@@ -1,4 +1,4 @@
-import { Menu } from "../Components/Menu/menu";
+import { Menu } from "../Menu/menu";
 import { Tasks } from "../Tasks/tasks";
 import './dashboard.css'
 
