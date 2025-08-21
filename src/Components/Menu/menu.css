@@ -1,0 +1,13 @@
+#menu{
+    display: flex;
+    flex-direction: column;
+    background-color: rebeccapurple;
+    justify-content: center;
+    padding: 2em;
+}
+
+@media screen and (width=300px) {
+    #menu{
+        flex-direction: row;
+    }
+}
