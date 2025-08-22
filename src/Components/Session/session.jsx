@@ -1,12 +1,15 @@
 import './session.css'
 import { FormField } from '../FormField/formField'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Context } from '../Context/Context';
 export function Session({route}){
     console.log(route)
     const [credentials,setCredentials] = useState([]);
     const [message,setMessage] = useState("");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const {uid,setUid} = useContext(Context);
+
     /**
      * manejo de eventos
      * @param {event} event- Evento de cambio 
@@ -24,7 +27,7 @@ export function Session({route}){
      * envia la información al servidor para inicio de sesion o registro de usuario
      */
     async function Send(){
-        console.log(`http://localhost:8080/api/sessions/${route}`)
+        console.log(credentials)
         let resp = await fetch(`http://localhost:8080/api/sessions/${route}`,{
             method:"post",
             headers:{
@@ -34,7 +37,11 @@ export function Session({route}){
         })
         resp = await resp.json();
         if(resp.result === "OK"){
-            navigate("/dashboard");
+            if(route === 'login'){
+                setUid(resp.payload._id);
+                console.log(uid,"UID");
+            }
+            navigate((route === "login")? "/dashboard": "/login");
         } else {
             setMessage(resp.payload);
         }
@@ -44,22 +51,22 @@ export function Session({route}){
 
     return(
         <div id="session">
-            {route === "login" ? (<>
+            {route === "signup" ? (<>
+                <FormField text={"Name"} type={"text"} handleEvent={handleEvent} name={"name"}/>
+                <FormField text={"Last Name"} type={"text"} handleEvent={handleEvent} name={"lastname"}/>
                 <FormField text={"Email"} type={"Email"} handleEvent={handleEvent} name={"email"}/>
                 <FormField text={"Password"} type={"Password"} handleEvent={handleEvent} name={"pass"}/>
-                {message !== "" && <p>{message}</p>}
             </>
             ): (
                 <>
-                <FormField text={"Name"} type={"text"} handleEvent={handleEvent} name={"name"}/>
-                <FormField text={"Last Name"} type={"text"} handleEvent={handleEvent} name={"lastName"}/>
                 <FormField text={"Email"} type={"Email"} handleEvent={handleEvent} name={"email"}/>
                 <FormField text={"Password"} type={"Password"} handleEvent={handleEvent} name={"pass"}/>
+                {message !== "" && <p>{message}</p>}
 
                     
                 </>
             )}
-            <button onClick={Send}>{route === '/login' ? "LogIn": "SignUp"}</button>
+            <button onClick={Send}>{route === 'login' ? "LogIn": "SignUp"}</button>
         </div>
     )
 }

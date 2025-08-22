@@ -9,7 +9,7 @@ import { Session } from './Components/Session/session';
 
 function App() {
   const rute = useLocation();
-  const route = rute.pathname.slice(1)
+  const route = rute.pathname.replace("/","") || "default";
   console.log(route, "ruta, app")
   return (
     <div id="page">
