@@ -6,9 +6,9 @@ export function Tasks({tasks}){
     return(
         <div id="tasks">
             <ul>
-                {tasks.map((item) =>{
+                {tasks.map((item,index) =>{
                     return(
-                        <li><Task name={item.name} tid={item._id} description={item.description} check={item.completed}/></li>
+                        <li><Task name={item.name} tid={item._id} description={item.description} check={item.completed} index={index}/></li>
                     )
                 })}
             </ul>

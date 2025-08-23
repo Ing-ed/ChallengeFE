@@ -1,9 +1,14 @@
 import './task.css'
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
+import { Context } from '../Context/Context';
 
-export function Task({name,tid,description,check}){
-    const [state, setState] = useState(false);
+export function Task({name,tid,description,check,index}){
+    const {tasks, setTasks} = useContext(Context);
     const completed = useRef(null);
+    useEffect(() =>{
+        completed.current.style.backgroundColor = check? "green" : "red";
+    },[check])
+
     async function CompleteTask(){
         console.log({tid:tid});
         let resp = await fetch(`http://localhost:8080/api/tasks/checktask`,{
@@ -15,11 +20,9 @@ export function Task({name,tid,description,check}){
         })
         resp = await resp.json();
         if(resp.result === "OK"){
-            setState(resp.payload.completed);
-            console.log(state)
-            completed.current.style.backgroundColor = state? "green" : "red";
+            completed.current.style.backgroundColor = resp.payload.completed? "green" : "red";
         }
-        console.log(resp.result);
+        console.log(resp);
     }
     async function DeleteTask(){
         let resp = await fetch(`http://localhost:8080/api/tasks/deletetask`,{
@@ -30,8 +33,9 @@ export function Task({name,tid,description,check}){
             body:JSON.stringify({tid:tid})
         })
         resp = await resp.json();
+        console.log(resp,"DELETE")
         if(resp.result === "OK"){
-            
+            setTasks(item => item.filter((_,i) => i!== index))
         }
     }
 
@@ -46,7 +50,7 @@ export function Task({name,tid,description,check}){
                 {/* <input type="checkbox" value={check} disabled="disabled" ref={completed}/> */}
                 <div className='check' ref={completed}></div>
                 <button onClick={CompleteTask}>Completed</button>
-                <button id='delete'>Delete</button>
+                <button id='delete' onClick={DeleteTask}>Delete</button>
             </li>
 
         </ul>

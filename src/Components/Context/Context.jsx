@@ -26,8 +26,11 @@ const navigation={
 
 export function Provider({children}){
     const [uid,setUid] = useState("");
+    const [tasks, setTasks] = useState([])
     return(
         <Context.Provider value = {{
+            tasks:tasks,
+            setTasks:setTasks,
             navigation:navigation,
             uid:uid,
             setUid:setUid

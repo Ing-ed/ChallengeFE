@@ -5,8 +5,7 @@ import { Context } from "../Context/Context";
 import './dashboard.css'
 
 export function Dashboard(){
-    const {uid} = useContext(Context);
-    const [tasks, setTasks] = useState([])
+    const {uid, tasks, setTasks} = useContext(Context);
     async function GetTasks() {
         let resp = await fetch(`http://localhost:8080/api/tasks/getusertasks/${uid}`)
         resp = await resp.json()
