@@ -33,13 +33,14 @@ export function Task({name,tid,description,check,index}){
             body:JSON.stringify({tid:tid})
         })
         resp = await resp.json();
-        console.log(resp,"DELETE")
+        console.log(resp,"DELETE",index)
         if(resp.result === "OK"){
             setTasks(item => item.filter((_,i) => i!== index))
         }
     }
 
     function ShowModal(name){
+        console.log("index",index)
         setModalName(name)
         setModalTid(tid)
         setIndex(index)

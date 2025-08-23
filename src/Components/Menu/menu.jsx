@@ -3,7 +3,7 @@ import { FormField } from '../FormField/formField'
 import { useContext, useState } from 'react';
 import { Context } from '../Context/Context';
 
-export function Menu({setTasks,tasks}){
+export function Menu({setTasks,tasks, GetTasks}){
     const [credentials,setCredentials] = useState([]);
     const {uid} = useContext(Context);
     function handleEvent(event){
@@ -36,8 +36,9 @@ export function Menu({setTasks,tasks}){
             <ul>
                 <FormField name="name" type="text" handleEvent={handleEvent} text="Nombre de la tarea"/>
                 <FormField name="description" type="text" handleEvent={handleEvent} text="Descripcion" />
-                <button onClick={NewTask}>Crear tarea</button>
             </ul>
+                <button onClick={NewTask}>Crear tarea</button>
+                <button onClick={GetTasks}>Refresh</button>
         </aside>
     )
 }

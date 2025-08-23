@@ -9,6 +9,7 @@ import './modal.css'
 import { useContext, useState } from 'react'
 
 export function Modal({name, tid,index}){
+    console.log(index,"index modal")
     const [val, setVal] = useState("");
     const {setShowModal,tasks,setTasks} = useContext(Context)
     function HandleEvent(event){
@@ -30,12 +31,14 @@ export function Modal({name, tid,index}){
             console.log(update.$set,"update");
             console.log("Index:", index, "Tasks:", tasks);
             let updatedVal = tasks[index]
+            console.log(updatedVal,index,"tasks[index")
             updatedVal = {...updatedVal,...update.$set}
             let updatedArray = [...tasks];
             updatedArray[index] = updatedVal;
             console.log(updatedArray,"Modal")
             setTasks(updatedArray);
             console.log(tasks,"Modal")
+            setShowModal(false);
         }
     }
     return(

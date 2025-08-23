@@ -6,7 +6,7 @@ import { Modal } from "../Modal/modal";
 import './dashboard.css'
 
 export function Dashboard(){
-    const {uid, tasks, setTasks, showModal, modalName,modalVal,modalTid} = useContext(Context);
+    const {uid, tasks, setTasks, showModal, modalName,modalVal,modalTid, index} = useContext(Context);
     async function GetTasks() {
         let resp = await fetch(`http://localhost:8080/api/tasks/getusertasks/${uid}`)
         resp = await resp.json()
@@ -21,9 +21,9 @@ export function Dashboard(){
     },[])
     return(
         <div id="dashboard">
-            <Menu tasks={tasks} setTasks={UpdtTasks}/>
+            <Menu tasks={tasks} setTasks={UpdtTasks} GetTasks={GetTasks}/>
             <Tasks tasks={tasks}/>
-            {showModal && <Modal name ={modalName} value={modalVal}  tid={modalTid}/>}
+            {showModal && <Modal name ={modalName} value={modalVal}  tid={modalTid} index={index}/>}
         </div>
     )
 }
