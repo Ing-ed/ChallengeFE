@@ -7,3 +7,7 @@
     align-items: flex-start;
     justify-content: center;
 }
+#tasks ul{
+    width: 100%;
+    list-style: none;
+}

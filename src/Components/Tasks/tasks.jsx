@@ -1,12 +1,16 @@
+import { useEffect } from 'react'
+import { Task } from '../Task/task'
 import './tasks.css'
-export function Tasks(){
+export function Tasks({tasks}){
+    console.log("Tasks",tasks)
     return(
         <div id="tasks">
             <ul>
-                <li>Tarea</li>
-                <li>Tarea</li>
-                <li>Tarea</li>
-                <li>Tarea</li>
+                {tasks.map((item) =>{
+                    return(
+                        <li><Task name={item.name} tid={item._id} description={item.description} check={item.completed}/></li>
+                    )
+                })}
             </ul>
         </div>
     )

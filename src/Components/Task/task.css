@@ -1,0 +1,33 @@
+.Task{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px solid red;
+    justify-content: space-between;
+}
+.Task ul{
+    width: 100%;
+    list-style: none;
+}
+.Task li{
+    flex: 1;
+}
+.Task li.control{
+    flex:0 0 20%;
+}
+.control{
+    justify-items: start;
+    border: 1px solid green;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+}
+.control #delete{
+    grid-column: 1/ -1;
+    justify-self: stretch;
+}
+.check{
+    width: 15px;
+    height: 15px;
+    background-color: red;
+}
