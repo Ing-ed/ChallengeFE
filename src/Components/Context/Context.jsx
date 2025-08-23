@@ -26,14 +26,26 @@ const navigation={
 
 export function Provider({children}){
     const [uid,setUid] = useState("");
-    const [tasks, setTasks] = useState([])
+    const [tasks, setTasks] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [modalName, setModalName] = useState("");
+    const [modalTid, setModalTid] = useState("");
+    const [index, setIndex] = useState(0);
     return(
         <Context.Provider value = {{
             tasks:tasks,
             setTasks:setTasks,
             navigation:navigation,
             uid:uid,
-            setUid:setUid
+            setUid:setUid,
+            showModal:showModal,
+            setShowModal:setShowModal,
+            modalName:modalName,
+            setModalName:setModalName,
+            modalTid:modalTid,
+            setModalTid,setModalTid,
+            index:index,
+            setIndex:setIndex
         }}> {children}
         </Context.Provider>
     )

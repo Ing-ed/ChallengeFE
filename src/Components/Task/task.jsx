@@ -3,7 +3,7 @@ import { useState, useRef, useContext, useEffect } from "react";
 import { Context } from '../Context/Context';
 
 export function Task({name,tid,description,check,index}){
-    const {tasks, setTasks} = useContext(Context);
+    const {setTasks, setIndex, setShowModal, setModalName, setModalTid} = useContext(Context);
     const completed = useRef(null);
     useEffect(() =>{
         completed.current.style.backgroundColor = check? "green" : "red";
@@ -39,12 +39,18 @@ export function Task({name,tid,description,check,index}){
         }
     }
 
+    function ShowModal(name){
+        setModalName(name)
+        setModalTid(tid)
+        setIndex(index)
+        setShowModal(true)
+    }
 
     return(
         <ul className='Task' name={tid}>
             <li>
-                <p><b>{name}</b></p>
-                <p><i>{description}</i></p>
+                <p onClick={() => {ShowModal("name")}}><b>{name}</b></p>
+                <p onClick={() => {ShowModal("description")}}><i>{description}</i></p>
             </li>
             <li className='control'>
                 {/* <input type="checkbox" value={check} disabled="disabled" ref={completed}/> */}
@@ -52,7 +58,6 @@ export function Task({name,tid,description,check,index}){
                 <button onClick={CompleteTask}>Completed</button>
                 <button id='delete' onClick={DeleteTask}>Delete</button>
             </li>
-
         </ul>
     )
 }
