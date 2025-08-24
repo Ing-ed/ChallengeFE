@@ -1,9 +1,11 @@
 #menu{
     display: flex;
     flex-direction: column;
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
     justify-content: center;
     padding: 2em;
+    border-right: 1px solid teal;
+    gap:1em;
 }
 
 @media screen and (width=300px) {

@@ -4,8 +4,8 @@
     flex-grow: 1;
 }
 @media screen and (max-width: 300px) {
-    #menu{
-        background-color: black;
+    #dashboard{
+        /* background-color: black; */
         display: flex;
         flex-direction: column;
     }

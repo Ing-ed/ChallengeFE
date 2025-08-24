@@ -4,7 +4,23 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    background-color: teal;
+    /* background-color: teal; */
     align-items: center;
     box-sizing: border-box;
+    border-bottom: 2px solid teal;
 }
+#header #logo{
+    width: 70px;
+    border-radius: 50%;
+}
+
+@media screen and (max-width:300px) {
+    #header{
+        h1{
+            display: none;
+        }
+        #logo{
+            display: none;
+        }
+    }
+}   

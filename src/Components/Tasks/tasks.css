@@ -3,11 +3,12 @@
     padding: 0 3em;
     flex-direction: column;
     flex-grow: 1;
-    background-color: aqua;
+    /* background-color: aqua; */
     align-items: flex-start;
     justify-content: center;
+    border-left: 1px solid teal;
 }
 #tasks ul{
-    width: 100%;
+    width: 90%;
     list-style: none;
 }

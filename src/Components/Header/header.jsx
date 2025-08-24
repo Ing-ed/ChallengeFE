@@ -16,7 +16,7 @@ export function Header({route}){
 
     return(
         <div id="header">
-            <div id="logo">Logo</div>
+            <img src="logo.png" alt="logo inged embedded" id="logo"/>
             <h1>Bienvenido</h1>
             <a onClick={Nav}>{navigation[route].text}</a>
         </div>
