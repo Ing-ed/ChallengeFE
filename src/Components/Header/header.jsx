@@ -3,6 +3,11 @@ import { useContext } from "react";
 import { Context } from "../Context/Context";
 import './header.css'
 
+/**
+ * 
+ * @param {route} route - Contain the url's endpoint 
+ * @returns 
+ */
 export function Header({route}){
     const navigate = useNavigate();
     const {navigation} = useContext(Context);

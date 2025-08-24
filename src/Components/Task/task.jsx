@@ -2,8 +2,14 @@ import './task.css'
 import { useState, useRef, useContext, useEffect } from "react";
 import { Context } from '../Context/Context';
 
+
+/**
+ * this component shows task information, name, description, completed
+ * also, provides the buttons to check task (complete) or delete it. 
+ * @returns 
+ */
 export function Task({name,tid,description,check,index}){
-    const {setTasks, setIndex, setShowModal, setModalName, setModalTid} = useContext(Context);
+    const {setTasks, setIndex, setShowModal, setModalField, setModalTid} = useContext(Context);
     const completed = useRef(null);
     useEffect(() =>{
         completed.current.style.backgroundColor = check? "green" : "red";
@@ -41,7 +47,7 @@ export function Task({name,tid,description,check,index}){
 
     function ShowModal(name){
         console.log("index",index)
-        setModalName(name)
+        setModalField(name)
         setModalTid(tid)
         setIndex(index)
         setShowModal(true)

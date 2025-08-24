@@ -13,6 +13,10 @@
 .Task li{
     flex: 1;
 }
+.Task li p:hover{
+    cursor: pointer;
+}
+
 .Task li.control{
     flex:0 0 20%;
 }

@@ -3,6 +3,12 @@ import { FormField } from '../FormField/formField'
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../Context/Context';
+
+/**
+ * this component wors as login or signup, depending of the route param
+ * @param {route} route - contains the url's endpoint 
+ * @returns 
+ */
 export function Session({route}){
     console.log(route)
     const [credentials,setCredentials] = useState([]);

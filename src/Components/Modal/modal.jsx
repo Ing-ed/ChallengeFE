@@ -8,7 +8,7 @@ import { Context } from '../Context/Context';
 import './modal.css'
 import { useContext, useState } from 'react'
 
-export function Modal({name, tid,index}){
+export function Modal({field, tid,index}){
     console.log(index,"index modal")
     const [val, setVal] = useState("");
     const {setShowModal,tasks,setTasks} = useContext(Context)
@@ -21,13 +21,13 @@ export function Modal({name, tid,index}){
             headers:{
                 "Content-Type":"application/json"
             },
-            body:JSON.stringify({tid:tid,field:name,value:val})
+            body:JSON.stringify({tid:tid,field:field,value:val})
         });
         resp = await resp.json();
         console.log(resp);
         if(resp.result === "OK"){
             let update = {$set:{}}
-            update.$set[name] = val
+            update.$set[field] = val
             console.log(update.$set,"update");
             console.log("Index:", index, "Tasks:", tasks);
             let updatedVal = tasks[index]
@@ -43,7 +43,7 @@ export function Modal({name, tid,index}){
     }
     return(
         <div id="Modal">
-            <label>Ingrese nuevo {name}</label>
+            <label>Ingrese nuevo {field}</label>
             <input type="text" onChange={HandleEvent}/>
             <button onClick={UpdateTask}>Update</button>
             <button onClick={() => {setShowModal(false)}}>Cancelar</button>

@@ -7,8 +7,11 @@ import { Modal } from "../Modal/modal";
 import './dashboard.css'
 
 export function Dashboard(){
-    const {uid, tasks, setTasks, showModal, modalName,modalVal,modalTid, index} = useContext(Context);
+    const {uid, tasks, showModal, modalField,modalVal,modalTid, index,setTasks} = useContext(Context);
     const navigate = useNavigate();
+    /**
+     * get all user's task
+     */
     async function GetTasks() {
         console.log("getTask")
         let resp = await fetch(`http://localhost:8080/api/tasks/getusertasks`,{
@@ -23,17 +26,16 @@ export function Dashboard(){
         setTasks(resp.payload);
         console.log(resp, tasks);
     }
-    function UpdtTasks(newTasks){
-        setTasks(newTasks);
-    }
+    /** update the task list when user creates a new task  */
+    
     useEffect(() =>{
         GetTasks();
     },[])
     return(
         <div id="dashboard">
-            <Menu tasks={tasks} setTasks={UpdtTasks} GetTasks={GetTasks}/>
+            <Menu GetTasks={GetTasks}/>
             <Tasks tasks={tasks}/>
-            {showModal && <Modal name ={modalName} value={modalVal}  tid={modalTid} index={index}/>}
+            {showModal && <Modal field ={modalField} value={modalVal}  tid={modalTid} index={index}/>}
         </div>
     )
 }

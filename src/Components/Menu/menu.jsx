@@ -3,9 +3,15 @@ import { FormField } from '../FormField/formField'
 import { useContext, useState } from 'react';
 import { Context } from '../Context/Context';
 
-export function Menu({setTasks,tasks, GetTasks}){
+
+/**
+ * 
+ * @param {GetTasks} setTasks - the callback to update the task list 
+ * @returns 
+ */
+export function Menu({GetTasks}){
     const [credentials,setCredentials] = useState([]);
-    const {uid} = useContext(Context);
+    const {uid, setTasks,tasks} = useContext(Context);
     function handleEvent(event){
         const {name} = event.target;
         // console.log(event.target.value,name)
