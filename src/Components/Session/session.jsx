@@ -33,12 +33,14 @@ export function Session({route}){
             headers:{
                 "Content-Type":"application/json"
             },
+            credentials:'include',
             body:JSON.stringify(credentials)
         })
         resp = await resp.json();
+        console.log("respuesta de session",resp)
         if(resp.result === "OK"){
             if(route === 'login'){
-                setUid(resp.payload._id);
+                setUid(resp.payload.uid);
                 console.log(uid,"UID");
             }
             navigate((route === "login")? "/dashboard": "/login");

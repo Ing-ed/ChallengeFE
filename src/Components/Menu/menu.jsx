@@ -23,6 +23,7 @@ export function Menu({setTasks,tasks, GetTasks}){
             headers:{
                 "Content-Type":"application/json"
             },
+            credentials:'include',
             body:JSON.stringify({...credentials,uid:uid})
         })
         resp = await resp.json();
