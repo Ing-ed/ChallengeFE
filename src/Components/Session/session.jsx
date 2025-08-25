@@ -34,7 +34,8 @@ export function Session({route}){
      */
     async function Send(){
         console.log(credentials)
-        let resp = await fetch(`http://localhost:8080/api/sessions/${route}`,{
+        console.log(`https://challenge-be.vercel.app/api/sessions/${route}`)
+        let resp = await fetch(`https://challenge-be.vercel.app/api/sessions/${route}`,{
             method:"post",
             headers:{
                 "Content-Type":"application/json"
@@ -69,6 +70,7 @@ export function Session({route}){
                 <>
                 <FormField text={"Email"} type={"Email"} handleEvent={handleEvent} name={"email"}/>
                 <FormField text={"Password"} type={"Password"} handleEvent={handleEvent} name={"pass"}/>
+                <button onClick={() =>{navigate("/signup")}}>SignUp</button>
                 {message !== "" && <p>{message}</p>}
 
                     

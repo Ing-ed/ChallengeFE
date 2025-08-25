@@ -24,7 +24,7 @@ export function Menu({GetTasks}){
         console.log("uid",uid)
         setCredentials({...credentials,uid:uid});
         console.log(credentials,"credNewtask")
-        let resp = await fetch(`http://localhost:8080/api/tasks/newtask`,{
+        let resp = await fetch(`https://challenge-be.vercel.app/api/tasks/newtask`,{
             method:"post",
             headers:{
                 "Content-Type":"application/json"

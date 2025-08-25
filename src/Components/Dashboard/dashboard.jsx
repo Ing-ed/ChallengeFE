@@ -14,7 +14,7 @@ export function Dashboard(){
      */
     async function GetTasks() {
         console.log("getTask")
-        let resp = await fetch(`http://localhost:8080/api/tasks/getusertasks`,{
+        let resp = await fetch(`https://challenge-be.vercel.app/api/tasks/getusertasks`,{
             method:"GET",
             credentials:'include'
         })

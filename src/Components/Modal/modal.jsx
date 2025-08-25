@@ -16,7 +16,7 @@ export function Modal({field, tid,index}){
         setVal(event.target.value);
     }
     async function UpdateTask() {
-        let resp = await fetch(`http://localhost:8080/api/tasks/updatetask`,{
+        let resp = await fetch(`https://challenge-be.vercel.app/api/tasks/updatetask`,{
             method:"PUT",
             headers:{
                 "Content-Type":"application/json"

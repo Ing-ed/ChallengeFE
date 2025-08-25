@@ -10,11 +10,12 @@ import { Session } from './Components/Session/session';
 function App() {
   const rute = useLocation();
   const route = rute.pathname.replace("/","") || "default";
+  
   console.log(route, "ruta, app")
   return (
     <div id="page">
       <Header route = {route}/>
-      {route === "dashboard" ? <Dashboard/> : <Session route={route}/>}
+      {route === "dashboard" ? <Dashboard/> : <Session route={(route === 'default') ? 'login' : route}/>}
     </div>
   );
 }

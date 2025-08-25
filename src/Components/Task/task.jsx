@@ -17,7 +17,7 @@ export function Task({name,tid,description,check,index}){
 
     async function CompleteTask(){
         console.log({tid:tid});
-        let resp = await fetch(`http://localhost:8080/api/tasks/checktask`,{
+        let resp = await fetch(`https://challenge-be.vercel.app/api/tasks/checktask`,{
             method:"PUT",
             headers:{
                 "Content-Type":"application/json"
@@ -31,7 +31,7 @@ export function Task({name,tid,description,check,index}){
         console.log(resp);
     }
     async function DeleteTask(){
-        let resp = await fetch(`http://localhost:8080/api/tasks/deletetask`,{
+        let resp = await fetch(`https://challenge-be.vercel.app/api/tasks/deletetask`,{
             method:"DELETE",
             headers:{
                 "Content-type":"application/json",
